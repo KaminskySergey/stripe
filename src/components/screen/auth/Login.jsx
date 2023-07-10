@@ -15,11 +15,10 @@ const Login = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const status = await signIn('credentials', {email, password})
-        console.log(status)
-        if(status.ok){
+        await signIn('credentials', {email, password})
+        
             router.push('/card')
-        }
+        
     }
 
     const handleChange = (e) => {

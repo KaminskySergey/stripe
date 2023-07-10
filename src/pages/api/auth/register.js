@@ -10,9 +10,9 @@ import { Conflict } from 'http-errors';
 export default async function handler(req, res){
 
   const { name, email, password, subscription } = await req.body;
-console.log(name, email, password)
+
 await connectDB();
-console.log(name, email, password)
+
 
   const hashedPassword = await bcrypt.hash(password, 5);
 
