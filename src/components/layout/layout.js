@@ -22,7 +22,7 @@ const Layout = ({children}) => {
             </Link>
                 </li>
                 {session.status === 'authenticated' ? <li>
-                <Link href={'/auth/card'}>
+                <Link href={'/card'}>
                 Course
             </Link>
                 </li> : ''}

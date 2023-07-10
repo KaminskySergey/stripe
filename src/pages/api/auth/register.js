@@ -21,7 +21,7 @@ console.log(name, email, password)
     email,
     password: hashedPassword,
     subscription,
-    subscription: 'basic',
+    
   });
 
   try {

@@ -19,7 +19,7 @@ const HomePage = () => {
         </Link> : 
         <p>
             спочатку потрібна  
-            <Link href={'/api/register'}>
+            <Link href={'/auth/register'}>
             реєстрація
             </Link>
         </p>

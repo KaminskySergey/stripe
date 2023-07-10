@@ -12,7 +12,7 @@ async function handler(req, res) {
 
     const {priceId} = req.body
 
-    console.log(priceId, 'ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt')
+    
     
     const stripe = new Stripe(process.env.SECRET_KEY_STRIPE)
     

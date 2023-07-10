@@ -3,6 +3,8 @@ import styles from './CardCourse.module.css'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 // export const getStaticProps = async () => {
     
@@ -15,35 +17,54 @@ import axios from 'axios';
 
 const CardCourse = () => {
 const [getCourse, setGetCourse] = useState([])
+const [currentId, setCurrentId] = useState('')
+const session = useSession()
+  useEffect(() => {
+    getAllCourse();
+    // checkSubscriptionStatus();
+    // getCurrentUserId()
+  }, []);
+  
+// const getCurrentUserId = async () => {
+//     try {
+//         const email = await session?.data?.user?.email;
+//         const response = await axios.post('/api/subscriptions', { email });
+//         const data = response.data;
+    
+//         console.log(data, 'rrr');
+    
+//         return data;
+//       } catch (error) {
+//         console.error(error);
+        
+//       }
+// }
 
-useEffect(() => {
-    getAllCourse()
-}, [])
 
-const getAllCourse = async () => {
-try {
-    const {data} = await axios.get('/api/getCourse')
-console.log(data.data)
-setGetCourse(data.data)
-} catch (error) {
-    console.log(error)
-}
 
-}
-const handleSubscription = async (e, id) => {
-e.preventDefault()
-const {data} = await axios.post('/api/payment', 
-{
-    priceId: id
-},
-{
-    headers: {
-        'Content-Type': 'application/json',
+  const getAllCourse = async () => {
+    try {
+      const { data } = await axios.get('/api/getCourse');
+      setGetCourse(data.data);
+      
+      
+    } catch (error) {
+      console.log(error);
     }
-})
+  };
+   
+  
 
-window.location.assign(data)
-}
+  const handleSubscription = async (e, id) => {
+    e.preventDefault();
+    setCurrentId(id);
+    
+    const { data } = await axios.post('/api/payment', {
+      priceId: id,
+    });
+    
+    window.location.assign(data);
+  };
     return (
         <>
         <ul style={{display: 'flex'}}>
