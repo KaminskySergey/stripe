@@ -1,14 +1,17 @@
+import { NextResponse } from "next/server";
 import Stripe from "stripe";
-
-
-export async function GET(req, res) {
+export default async function handler(req, res) {
+    console.log(process.env.SECRET_KEY_STRIPE)
     const stripe = new Stripe(process.env.SECRET_KEY_STRIPE)
+    
     const prices = await stripe.prices.list({
         limit: 3
     })
+    
+    res.status(200).json(prices);
+  }
 
-    return req.json(prices.data.reverse())
-} 
+
 
 
 

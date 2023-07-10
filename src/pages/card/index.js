@@ -5,12 +5,12 @@ import {useRouter} from 'next/router'
 
 import { loadCourses } from '@/lib/load-courses';
 
-export async function getStaticProps() {
-    const data = await loadCourses()
-    return { props: { data } }
-  }
+// export async function getStaticProps() {
+//     const data = await loadCourses()
+//     return { props: { data } }
+//   }
 
-const CardPage = (props) => {
+const CardPage = () => {
     const {asPath, pathname} = useRouter()
     
     const session = useSession()
@@ -22,7 +22,7 @@ const CardPage = (props) => {
     return (
         <>
         <Layout>
-            <CardCourse data={props}/>
+            <CardCourse />
         </Layout>
         </>
     )

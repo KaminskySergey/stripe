@@ -4,6 +4,8 @@ import { signOut, useSession } from "next-auth/react"
 
 const Layout = ({children}) => {
     const session = useSession()
+    
+    console.log(session)
     return (
         <>
         <AuthProvider>
@@ -19,6 +21,11 @@ const Layout = ({children}) => {
                 Auth
             </Link>
                 </li>
+                {session.status === 'authenticated' ? <li>
+                <Link href={'/auth/card'}>
+                Course
+            </Link>
+                </li> : ''}
             </ul>
             <div style={{marginLeft: 'auto'}}>
                 {session.status === 'authenticated' ? 
