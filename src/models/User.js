@@ -15,8 +15,12 @@ const userSchema = new Schema({
         unique: true,
       },
       subscription: {
-        type: [String],
+        type: [Object],
         default: []
+      },
+      courseId: {
+        type: [String],
+        default: [],
       },
       token: { type: String },
 },

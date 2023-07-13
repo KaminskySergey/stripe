@@ -33,14 +33,18 @@ const handler = NextAuth({
                   throw new Error('Неверный пароль или почта');
                 }
           
-                return result;
+                const sessionData = {
+                  ...result._doc,
+                  id: result._id.toString()
+                };
+            
+                return sessionData;
               } catch (error) {
                 throw new Error('Ошибка аутентификации');
               }
             },
           }),
     ],
-    
     pages: {
       error: '/auth/login'
     },
